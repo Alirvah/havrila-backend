@@ -5,11 +5,11 @@ class NotebookSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.Notebook
-        fields = ('id', 'title', 'created_at', 'created_by')
+        fields = ('id', 'title', 'created_at')
 
 
 class NoteSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.Note
-        fields = ('id', 'title', 'created_at', 'starred','notebook')
+        fields = ('id', 'title', 'created_at','starred','notebook')

@@ -4,7 +4,8 @@ from rest_framework import routers
 from . import api
 
 router = routers.DefaultRouter()
-router.register(r'note', api.NotebookViewSet)
+router.register(r'note', api.NoteViewSet)
+router.register(r'notebook', api.NotebookViewSet)
 
 
 urlpatterns = (
