@@ -12,4 +12,4 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.Note
-        fields = ('id', 'title', 'created_at','starred','notebook')
+        fields = ('id', 'title','content', 'created_at','starred','notebook')
