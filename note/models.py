@@ -34,7 +34,7 @@ class Notebook(models.Model):
 class Note(models.Model):
 
     title = models.CharField(max_length=100)
-    content = models.BinaryField()
+    content = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
     starred = models.BooleanField(default=False)
 

@@ -27,7 +27,7 @@ class NoteAdminForm(forms.ModelForm):
 
 class NoteAdmin(admin.ModelAdmin):
     form = NoteAdminForm
-    list_display = ['title','content','notebook','starred','created_at']
+    list_display = ['title','notebook','starred','created_at']
     readonly_fields = ['created_at']
 
 admin.site.register(Note, NoteAdmin)
