@@ -23,4 +23,5 @@ media
 !**/migrations
 !**/migrations/__init__.py
 
+.env
 env
