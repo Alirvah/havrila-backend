@@ -8,6 +8,7 @@ urlpatterns = [
     path('note/', include('note.urls')),
     path('todo/', include('todo.urls')),
     path('file/', include('file.urls')),
+    path('wifi/', include('wifi.urls')),
 
   	path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
