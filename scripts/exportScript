@@ -1,0 +1,5 @@
+#content of env file
+#SECRET_KEY=
+#USER=
+#PASSWORD=
+. .env && export USER && export SECRET_KEY && export PASSWORD
