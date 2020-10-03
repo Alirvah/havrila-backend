@@ -14,7 +14,7 @@ class Device(models.Model):
         ordering = ('-created_at',)
 
     def __str__(self):
-        return '%s' % self.title
+        return '%s' % self.name
 
     def __unicode__(self):
         return u'%s' % self.pk
