@@ -1,10 +1,17 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
-from . import views
+from . import api
+
+router = routers.DefaultRouter()
+router.register(r'device', api.DeviceViewSet)
+
 
 urlpatterns = (
-    path('api/v1/wifi/post/', views.WifiPostViewSet),
-    path('api/v1/wifi/get/', views.WifiGetViewSet),
+    # urls for Django Rest Framework API
+    path('api/v1/', include(router.urls)),
 )
+
+
 
 

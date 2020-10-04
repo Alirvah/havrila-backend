@@ -11,7 +11,7 @@ class SensorAdminForm(forms.ModelForm):
 
 class SensorAdmin(admin.ModelAdmin):
     form = SensorAdminForm
-    list_display = ['ts', 'broadband','infrared','light','temprpi','temproom','pressure','humidity']
+    list_display = ['created_at', 'ts', 'broadband','infrared','light','temprpi','temproom','pressure','humidity']
     readonly_fields = ['created_at']
 
 admin.site.register(Sensor, SensorAdmin)
@@ -26,7 +26,7 @@ class StatusAdminForm(forms.ModelForm):
 
 class StatusAdmin(admin.ModelAdmin):
     form = StatusAdminForm
-    list_display = ['ts', 'uptime','cpu','mem','disk','temp','wrec','wtran']
+    list_display = ['created_at', 'ts', 'uptime','cpu','mem','disk','temp','wrec','wtran']
     readonly_fields = ['created_at']
 
 admin.site.register(Status, StatusAdmin)
