@@ -5,7 +5,7 @@ class FilerSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.Filer
-        fields = ('id', 'title', 'created_at','size','upload')
+        fields = ('id', 'title', 'created_at','size','upload','path')
 
 
 

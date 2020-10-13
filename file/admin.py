@@ -11,7 +11,7 @@ class FilerAdminForm(forms.ModelForm):
 
 class FilerAdmin(admin.ModelAdmin):
     form = FilerAdminForm
-    list_display = ['title', 'created_by', 'created_at', 'size','upload']
+    list_display = ['title', 'created_by', 'created_at', 'size','upload','path']
     readonly_fields = ['created_at','title','size']
 
 admin.site.register(Filer, FilerAdmin)
