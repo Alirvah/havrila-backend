@@ -1,4 +1,4 @@
-## How to start
+#t # How to start
 
 ```
  git clone https://github.com/Alirvah/havrila-backend.git
@@ -7,6 +7,7 @@
  python3 -m venv env
  source env/bin/activate
  pip install -r req.txt 
+ ./scripts/exportScript
  ./manage.py migrate
  ./manage.py runserver
 
