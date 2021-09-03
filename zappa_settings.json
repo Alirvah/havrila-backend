@@ -1,10 +1,23 @@
 {
-    "dev": {
-        "aws_region": "eu-central-1",
-        "django_settings": "havrila.settings",
-        "profile_name": "default",
-        "project_name": "havrila",
-        "runtime": "python3.8",
-        "s3_bucket": "zappa-havrila-net"
-    }
+  "dev": {
+    "aws_region": "eu-central-1",
+    "django_settings": "havrila.settings",
+    "profile_name": "default",
+    "project_name": "havrila",
+    "runtime": "python3.8",
+    "s3_bucket": "zappa-havrila-net",
+    "extra_permissions": [
+      {
+        "Effect": "Allow",
+        "Action": ["ec2:StartInstances", "ec2:StopInstances"],
+        "Resource": "arn:aws:ec2:*:*:instance/*"
+      }
+    ],
+    "events": [
+      {
+        "function": "system.functions.stopServer",
+        "expression": "cron(0 23 * * ? *)"
+      }
+    ]
+  }
 }
