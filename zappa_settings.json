@@ -9,7 +9,11 @@
     "extra_permissions": [
       {
         "Effect": "Allow",
-        "Action": ["ec2:StartInstances", "ec2:StopInstances"],
+        "Action": [
+          "ec2:StartInstances",
+          "ec2:StopInstances",
+          "ec2:ModifyInstanceAttribute"
+        ],
         "Resource": "arn:aws:ec2:*:*:instance/*"
       }
     ],

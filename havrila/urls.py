@@ -17,4 +17,8 @@ urlpatterns = [
 
     path('api/get-groups/', system_views.getUserGroups),
     path('api/ec2-server/',system_views.ec2Server),
+    path('api/ec2-server-change-instance/',system_views.changeEc2Instance),
+    path('api/ec2-server-get-instances/',system_views.getInstanceTypes),
+
+    path('api/s3-backup/',system_views.getLastBackup),
 ]
