@@ -2,7 +2,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.urls import reverse
 
 class Notebook(models.Model):
 

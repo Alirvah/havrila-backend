@@ -1,3 +1,6 @@
+from system import models as systemModels
+import datetime
+from django.utils.timezone import make_aware
 import boto3
 
 def archiveWorld():
@@ -20,3 +23,18 @@ def startServer():
     ec2 = boto3.resource(EC2)
     instance = ec2.Instance(INSTANCE_ID)
     instance.start()
+
+
+def getServerState():
+    ec2 = boto3.resource(EC2)
+    instance = ec2.Instance(INSTANCE_ID)
+    return instance.state['Name']
+
+
+def stopIfEmpty():
+    online = systemModels.Online.objects.all().first()
+    now = datetime.datetime.now()
+    oneHourOld = make_aware(now-datetime.timedelta(hours=1))
+    if online.created_at < oneHourOld:
+        if getServerState() == 'running':
+            stopServer()
