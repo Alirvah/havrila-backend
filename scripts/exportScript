@@ -2,4 +2,5 @@
 #SECRET_KEY=
 #USER=
 #PASSWORD=
-. .env && export USER && export SECRET_KEY && export PASSWORD
+#FAST_TOKEN
+. .env && export USER && export SECRET_KEY && export PASSWORD && export FAST_TOKEN

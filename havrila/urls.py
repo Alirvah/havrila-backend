@@ -20,7 +20,7 @@ urlpatterns = [
     path('sensors/', include('sensors.urls')),
     path('system/',include(router.urls)),
 
-  	path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 
     path('api/get-groups/', system_views.getUserGroups),
@@ -30,4 +30,6 @@ urlpatterns = [
 
     path('api/s3-backup/',system_views.getLastBackup),
 
+    path('api/fast-start/',system_views.fastStart),
+    path('api/fast-stop/',system_views.fastStop),
 ]

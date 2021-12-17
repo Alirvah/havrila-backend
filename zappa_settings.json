@@ -19,12 +19,8 @@
     ],
     "events": [
       {
-        "function": "system.functions.stopServer",
-        "expression": "cron(0 23 * * ? *)"
-      },
-      {
         "function": "system.functions.stopIfEmpty",
-        "expression": "cron(0 0/4 ? * * *)"
+        "expression": "cron(3 0/2 ? * * *)"
       }
     ]
   }
