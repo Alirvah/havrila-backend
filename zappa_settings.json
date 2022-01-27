@@ -21,6 +21,10 @@
       {
         "function": "system.functions.stopIfEmpty",
         "expression": "cron(3 0/2 ? * * *)"
+      },
+      {
+        "function": "system.functions.stopValheimIfEmpty",
+        "expression": "cron(3 * ? * * *)"
       }
     ]
   }

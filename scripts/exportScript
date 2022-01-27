@@ -3,4 +3,5 @@
 #USER=
 #PASSWORD=
 #FAST_TOKEN
-. .env && export USER && export SECRET_KEY && export PASSWORD && export FAST_TOKEN
+#STEAM_KEY
+. .env && export USER && export SECRET_KEY && export PASSWORD && export FAST_TOKEN && export STEAM_KEY
