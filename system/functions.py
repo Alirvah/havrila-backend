@@ -5,6 +5,9 @@ import boto3
 import requests
 import json
 from django.conf import settings
+import uuid
+
+
 
 def archiveWorld():
     s3 = boto3.resource('s3')
@@ -22,6 +25,13 @@ def stopIfEmpty():
     if online.created_at < oneHourOld:
         if instance.state['Name'] == 'running':
             instance.stop()
+            sl = systemModels.Server_log(
+              name = uuid.uuid4(),
+              user = 'automat',
+              operation = 'stopped',
+              server = 'minecraft',
+            )
+            sl.save()
 
 
 def stopValheimIfEmpty():
@@ -32,4 +42,11 @@ def stopValheimIfEmpty():
     if instance.state['Name'] == 'running':
         if response and 'servers' in response['response']:
             if response['response']['servers'][0]['players'] == 0:
-               instance.stop()
+                instance.stop()
+                sl = systemModels.Server_log(
+                  name = uuid.uuid4(),
+                  user = 'automat',
+                  operation = 'stopped',
+                  server = 'valheim',
+                )
+                sl.save()

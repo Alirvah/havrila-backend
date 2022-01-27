@@ -10,6 +10,7 @@ from system import api
 
 router = routers.DefaultRouter()
 router.register(r'online', api.OnlineViewSet)
+router.register(r'server', api.Server_logViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
