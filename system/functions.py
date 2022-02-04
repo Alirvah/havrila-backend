@@ -35,18 +35,21 @@ def stopIfEmpty():
 
 
 def stopValheimIfEmpty():
-    ec2 = boto3.resource('ec2')
-    instance = ec2.Instance(settings.INSTANCE['valheim'])
-    url = f'https://api.steampowered.com/IGameServersService/GetServerList/v1/?key={settings.STEAM_KEY}&filter=%5Caddr%5C{instance.public_ip_address}'
-    response = json.loads(requests.get(url).text)
-    if instance.state['Name'] == 'running':
-        if response and 'servers' in response['response']:
-            if response['response']['servers'][0]['players'] == 0:
-                instance.stop()
-                sl = systemModels.Server_log(
-                  name = uuid.uuid4(),
-                  user = 'automat',
-                  operation = 'stopped',
-                  server = 'valheim',
-                )
-                sl.save()
+    gte = make_aware(datetime.datetime.now())-datetime.timedelta(minutes=20)
+    serverJustStarted = systemModels.Data.objects.filter(name='valheim',data='started',last_updated__gte=gte)
+    if not serverJustStarted:
+        ec2 = boto3.resource('ec2')
+        instance = ec2.Instance(settings.INSTANCE['valheim'])
+        url = f'https://api.steampowered.com/IGameServersService/GetServerList/v1/?key={settings.STEAM_KEY}&filter=%5Caddr%5C{instance.public_ip_address}'
+        response = json.loads(requests.get(url).text)
+        if instance.state['Name'] == 'running':
+            if response and 'servers' in response['response']:
+                if response['response']['servers'][0]['players'] == 0:
+                    instance.stop()
+                    sl = systemModels.Server_log(
+                      name = uuid.uuid4(),
+                      user = 'automat',
+                      operation = 'stopped',
+                      server = 'valheim',
+                    )
+                    sl.save()

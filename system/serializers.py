@@ -13,3 +13,10 @@ class Server_logSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Server_log
         fields = ('id', 'name', 'created_at','last_updated','user','operation','server')
+
+
+class DataSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = models.Data
+        fields = ('id', 'name', 'created_at','last_updated','data')

@@ -29,3 +29,17 @@ class Server_logAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
 
 admin.site.register(Server_log, Server_logAdmin)
+
+
+class DataAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = Data
+        fields = '__all__'
+
+class DataAdmin(admin.ModelAdmin):
+    form = DataAdminForm
+    list_display = ['id','created_at', 'name','last_updated','data']
+    readonly_fields = ['created_at']
+
+admin.site.register(Data, DataAdmin)
