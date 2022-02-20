@@ -20,3 +20,10 @@ class DataSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Data
         fields = ('id', 'name', 'created_at','last_updated','data')
+    
+
+class Antik_fupSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = models.Antik_fup
+        fields = ('date','download','upload')

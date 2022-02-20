@@ -43,3 +43,17 @@ class DataAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
 
 admin.site.register(Data, DataAdmin)
+
+
+class Antik_fupAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = Antik_fup
+        fields = '__all__'
+
+class Antik_fupAdmin(admin.ModelAdmin):
+    form = Antik_fupAdminForm
+    list_display = ['id','created_at','date','download','upload']
+    readonly_fields = ['created_at']
+
+admin.site.register(Antik_fup, Antik_fupAdmin)

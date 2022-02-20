@@ -1,0 +1,7 @@
+#!python
+
+from system import models
+
+#a = models.Sensor.objects.filter(ts__lt=1628621452).delete()
+a = models.Antik_fup.objects.all().delete()
+
