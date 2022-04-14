@@ -53,3 +53,17 @@ def stopValheimIfEmpty():
                       server = 'valheim',
                     )
                     sl.save()
+    lte = make_aware(datetime.datetime.now())-datetime.timedelta(hours=20)
+    serverIsRunningTooLong = systemModels.Data.objects.filter(name='valheim',data='started',last_updated__lte=lte)
+    if serverIsRunningTooLong:
+        ec2 = boto3.resource('ec2')
+        instance = ec2.Instance(settings.INSTANCE['valheim'])
+        if instance.state['Name'] == 'running':
+            instance.stop()
+            sl = systemModels.Server_log(
+              name = uuid.uuid4(),
+              user = 'automat',
+              operation = 'stopped',
+              server = 'valheim',
+            )
+            sl.save()

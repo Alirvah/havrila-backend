@@ -26,3 +26,5 @@ media
 .env
 env
 *.test
+*test
+test*
