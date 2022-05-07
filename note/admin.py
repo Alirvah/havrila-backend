@@ -31,6 +31,3 @@ class NoteAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
 
 admin.site.register(Note, NoteAdmin)
-
-
-# Register your models here.

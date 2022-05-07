@@ -4,4 +4,27 @@
 #PASSWORD=
 #FAST_TOKEN
 #STEAM_KEY
-. .env && export USER && export SECRET_KEY && export PASSWORD && export FAST_TOKEN && export STEAM_KEY
+#ENGINE=
+#NAME=
+#HOST=
+#PORT=
+#ALLOWED_HOST
+#STATIC_URL
+#MEDIA_URL
+#S3_BUCKET
+#S3_UPLOADS
+. .env 
+export USER 
+export SECRET_KEY
+export PASSWORD
+export FAST_TOKEN
+export STEAM_KEY
+export ENGINE
+export NAME
+export HOST
+export PORT
+export ALLOWED_HOST
+export STATIC_URL
+export MEDIA_URL
+export S3_BUCKET
+export S3_UPLOADS

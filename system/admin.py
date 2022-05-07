@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import *
+from .models import Online, Server_log, Data, Antik_fup, Meeting, Setting
 
 class OnlineAdminForm(forms.ModelForm):
 
@@ -65,9 +65,25 @@ class MeetingAdminForm(forms.ModelForm):
         model = Meeting
         fields = '__all__'
 
+
 class MeetingAdmin(admin.ModelAdmin):
     form = MeetingAdminForm
     list_display = ['id','name','link','organizer','time',]
     readonly_fields = ['created_at']
 
 admin.site.register(Meeting, MeetingAdmin)
+
+
+class SettingForm(forms.ModelForm):
+
+    class Meta:
+        model = Setting
+        fields = '__all__'
+
+
+class SettingAdmin(admin.ModelAdmin):
+    form = SettingForm
+    list_display = ['id','name','data','notes']
+    readonly_fields = ['created_at']
+
+admin.site.register(Setting, SettingAdmin)

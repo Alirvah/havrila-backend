@@ -3,5 +3,10 @@
 from system import models
 
 #a = models.Sensor.objects.filter(ts__lt=1628621452).delete()
-a = models.Meeting.objects.all().delete()
+#a = models.Meeting.objects.all().delete()
+
+aws = models.Setting.objects.get(name='aws')
+
+print(aws.data['server']['valheim'])
+print(aws.data['instances'])
 
