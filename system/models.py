@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.conf import settings
 
 class Online(models.Model):
 
@@ -92,3 +93,27 @@ class Antik_fup(models.Model):
 
     def get_update_url(self):
         return reverse('system_antik_fup_update', args=(self.pk,))
+
+
+class Meeting(models.Model):
+    created_at = models.DateTimeField(default=timezone.now)
+    name = models.CharField(max_length=100)
+    link = models.CharField(max_length=100)
+    organizer = models.CharField(max_length=100)
+    duration = models.IntegerField(default=0)
+    time = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ('-pk',)
+
+    def __str__(self):
+        return '%s' % self.name
+
+    def __unicode__(self):
+        return u'%s' % self.pk
+
+    def get_absolute_url(self):
+        return reverse('system_meetings_detail', args=(self.pk,))
+
+    def get_update_url(self):
+        return reverse('system_meetings_update', args=(self.pk,))

@@ -13,6 +13,7 @@ router.register(r'online', api.OnlineViewSet)
 router.register(r'server', api.Server_logViewSet)
 router.register(r'data', api.Server_logViewSet)
 router.register(r'fup', api.Antik_fupViewSet)
+router.register(r'meeting', api.MeetingViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

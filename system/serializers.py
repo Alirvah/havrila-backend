@@ -27,3 +27,10 @@ class Antik_fupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Antik_fup
         fields = ('date','download','upload')
+
+
+class MeetingSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = models.Meeting
+        fields = ('id','name','link','organizer','time','duration')

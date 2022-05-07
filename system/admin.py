@@ -57,3 +57,17 @@ class Antik_fupAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
 
 admin.site.register(Antik_fup, Antik_fupAdmin)
+
+
+class MeetingAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = Meeting
+        fields = '__all__'
+
+class MeetingAdmin(admin.ModelAdmin):
+    form = MeetingAdminForm
+    list_display = ['id','name','link','organizer','time',]
+    readonly_fields = ['created_at']
+
+admin.site.register(Meeting, MeetingAdmin)
