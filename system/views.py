@@ -26,8 +26,11 @@ def ec2Server(request):
   aws = models.Setting.objects.get(name='aws')
   instance = ec2.Instance(aws.data['server'][request.data['instance']])
 
+  if 'action' not in request.data:
+    return Response({'status':'nothing to do'})
+
   inst_type = [i for i in aws.data['instances'] if instance.instance_type in i]
-  if 'action' in request.data and request.data['action'] == 'state':
+  if request.data['action'] == 'state':
     response = {
       'status':instance.state['Name'],
       'type': inst_type[0] if inst_type else '',
@@ -35,7 +38,7 @@ def ec2Server(request):
     }
     return Response(response)
 
-  if 'action' in request.data and request.data['action'] == 'start':
+  if request.data['action'] == 'start':
     if instance.state['Name'] == 'stopped':
       instance.start()
       sl = models.Server_log(
@@ -52,22 +55,22 @@ def ec2Server(request):
       valheimServerData.save()
     return Response({'status':'starting...'})
 
-  if 'action' in request.data and request.data['action'] == 'stop':
+  if request.data['action'] == 'stop':
     if request.data['instance'] == 'valheim':
       url = f'https://api.steampowered.com/IGameServersService/GetServerList/v1/?key={settings.STEAM_KEY}&filter=%5Caddr%5C{instance.public_ip_address}'
       response = json.loads(requests.get(url).text)
       if instance.state['Name'] == 'running':
-          if response and 'servers' in response['response']:
-              if response['response']['servers'][0]['players'] == 0:
-                  instance.stop()
-                  sl = models.Server_log(
-                    name = uuid.uuid4(),
-                    user = request.user.username,
-                    operation = 'stopped',
-                    server = 'valheim',
-                  )
-                  sl.save()
-                  return Response({'status':'stopping...'})
+        if response and 'servers' in response['response']:
+          if response['response']['servers'][0]['players'] == 0:
+            instance.stop()
+            sl = models.Server_log(
+              name = uuid.uuid4(),
+              user = request.user.username,
+              operation = 'stopped',
+              server = 'valheim',
+            )
+            sl.save()
+            return Response({'status':'stopping...'})
     else:
       if instance.state['Name'] == 'running':
         instance.stop()
