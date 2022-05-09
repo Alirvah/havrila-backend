@@ -8,7 +8,7 @@ class FastTokenAllow(permissions.BasePermission):
     def has_permission(self, request, view):
         try:
             token = request.query_params['t']
-        except Group.DoesNotExist:
+        except Exception as e:
             self.message = "Permission denied wrong TOKEN"
             return False
         return token == settings.FAST_TOKEN

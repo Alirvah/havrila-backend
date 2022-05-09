@@ -3,6 +3,7 @@ from . import serializers
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions
 from helpers.permissions import FastTokenAllow
+from datetime import datetime
 
 
 class OnlineViewSet(viewsets.ModelViewSet):
@@ -84,4 +85,6 @@ class MeetingViewSet(viewsets.ModelViewSet):
         return Response(request.data, status=400)
     
     def get_queryset(self):
-        return models.Meeting.objects.all()[:10]
+        now = datetime.now()
+        meetings = models.Meeting.objects.filter(time__regex=now.strftime('%d-%m-%Y'))[:10]
+        return meetings
