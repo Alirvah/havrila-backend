@@ -86,5 +86,5 @@ class MeetingViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         now = datetime.now()
-        meetings = models.Meeting.objects.filter(time__regex=now.strftime('%d-%m-%Y'))[:10]
+        meetings = models.Meeting.objects.filter(time__regex=now.strftime('%d-%m-%Y')).reverse()[:10]
         return meetings
