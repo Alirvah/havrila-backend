@@ -13,7 +13,7 @@
 #MEDIA_URL
 #S3_BUCKET
 #S3_UPLOADS
-. .env 
+. ./.env 
 export USER 
 export SECRET_KEY
 export PASSWORD
