@@ -20,7 +20,7 @@ def getUserGroups(request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-@isInGroup(['minecraft','valheim','workadventure'])
+@isInGroup(['minecraft','valheim'])
 def ec2Server(request):
   ec2 = boto3.resource('ec2')
   aws = models.Setting.objects.get(name='aws')
@@ -87,7 +87,7 @@ def ec2Server(request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-@isInGroup(['minecraft','valheim','workadventure'])
+@isInGroup(['minecraft','valheim'])
 def changeEc2Instance(request):
   ec2 = boto3.resource('ec2')
   aws = models.Setting.objects.get(name='aws')
@@ -121,7 +121,7 @@ def changeEc2Instance(request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-@isInGroup(['minecraft','valheim','workadventure'])
+@isInGroup(['minecraft','valheim'])
 def getInstanceTypes(request):
   aws = models.Setting.objects.get(name='aws')
   return Response({"types":aws.data['instances']})

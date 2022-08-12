@@ -25,10 +25,6 @@
       {
         "function": "system.functions.stopValheimIfEmpty",
         "expression": "cron(3 * ? * * *)"
-      },
-      {
-        "function": "system.functions.stopWorkadventure",
-        "expression": "cron(59 23 ? * * *)"
       }
     ]
   }

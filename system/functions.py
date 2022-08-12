@@ -15,21 +15,6 @@ import uuid
 #    s3.meta.client.copy({'Bucket':'<bucket>','Key':newestFile},'<folder>','<file>')
 
 
-def stopWorkadventure():
-    ec2 = boto3.resource('ec2')
-    aws = systemModels.Setting.objects.get(name='aws')
-    instance = ec2.Instance(aws.data['server']['workadventure'])
-    if instance.state['Name'] == 'running':
-        instance.stop()
-        sl = systemModels.Server_log(
-          name = uuid.uuid4(),
-          user = 'automat',
-          operation = 'stopped',
-          server = 'workadventure',
-        )
-        sl.save()
-
-
 def stopIfEmpty():
     ec2 = boto3.resource('ec2')
     aws = systemModels.Setting.objects.get(name='aws')
