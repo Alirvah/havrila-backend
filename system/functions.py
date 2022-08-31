@@ -69,3 +69,59 @@ def stopValheimIfEmpty():
               server = 'valheim',
             )
             sl.save()
+
+def restoreArchivedServer(server):
+    game = server
+    
+    VALHEIM = 'valheim'
+    MINECRAFT = 'minecraft'
+    
+    ec2 = boto3.client('ec2')
+    
+    images = ec2.describe_images(Owners=['self'],Filters=[{'Name':'description','Values':[game]}])
+    ami_of_latest_image = images['Images'][0]['ImageId']
+    
+    sg = ec2.describe_security_groups( Filters=[{'Name':'group-name','Values':[f'{game}*']}])
+    security_group = sg['SecurityGroups'][0]['GroupId']
+    
+    
+    instance_type = 'unknown'
+    if game == VALHEIM:
+        instance_type = 't3.medium'
+    if game == MINECRAFT:
+        instance_type = 't3.small'
+
+    #print(ami_of_latest_image,security_group,instance_type)
+
+    resp=ec2.run_instances(
+        ImageId=ami_of_latest_image,
+        InstanceType=instance_type,
+        KeyName='minecraftServer',
+        MaxCount=1,
+        MinCount=1,
+        NetworkInterfaces=[
+            {
+                'AssociatePublicIpAddress': True,
+                'DeviceIndex': 0,
+                'SubnetId': 'subnet-0248ac2bc396e797d',
+                'Groups': [security_group]
+            }
+        ],
+        TagSpecifications=[
+            {
+                'ResourceType': 'instance',
+                'Tags': [
+                    {
+                        'Key': 'Name',
+                        'Value': game
+                    },
+                ]
+            },
+        ],
+    )
+    #print(resp['Instances'][0]['InstanceId'])
+
+
+
+
+    
