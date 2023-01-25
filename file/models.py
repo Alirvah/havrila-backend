@@ -7,7 +7,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Filer(models.Model):
 
-    upload = models.FileField(upload_to=settings.MEDIA_URL)
+    upload = models.FileField(upload_to=f"{settings.MEDIA_URL.replace('/','')}/")
     path = models.TextField()
     title = models.CharField(max_length=100)
     created_at = models.DateTimeField(default=timezone.now)

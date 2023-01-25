@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 	'corsheaders',
+        'easyaudit',
 
 	'django_s3_sqlite',
 	'django_s3_storage',
@@ -76,6 +77,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'easyaudit.middleware.easyaudit.EasyAuditMiddleware',
 
 ]
 
@@ -164,3 +167,6 @@ AWS_S3_BUCKET_NAME_STATIC = S3_BUCKET
 STATIC_URL = "https://%s.s3.amazonaws.com/" % S3_BUCKET
 
 FAST_TOKEN = os.environ.get('FAST_TOKEN')
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
